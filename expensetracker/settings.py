@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "tracker"
+    "tracker",
+    'dotenv'
 ]
 
 MIDDLEWARE = [
@@ -76,13 +77,24 @@ WSGI_APPLICATION = 'expensetracker.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+import os
+from dotenv import load_dotenv
+env = load_dotenv()
+#print(env)
+import environ  
+
+
+NAME = os.getenv('NAME')
+USER = os.getenv('USER')
+PASSWORD = os.getenv('PASSWORD')
+print(NAME,USER)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'expensiveTracker',
-        'USER': 'root',
-        'PASSWORD': '102323',
+        'NAME': NAME,
+        'USER': USER,
+        'PASSWORD': PASSWORD,
         'HOST': 'localhost',
         'PORT':'3306',
     }
